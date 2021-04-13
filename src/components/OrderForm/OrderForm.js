@@ -14,6 +14,23 @@ class OrderForm extends Component {
     this.setState({name: event.target.value})
   }
 
+  handleIngredientChange = (event) => {
+    // prevent buttons from submitting the form
+    event.preventDefault();
+    // temporary local handles
+    let ingredients = [...this.state.ingredients];
+    const ingredient = event.target.name;
+    // check if we've already added this ingredient
+    if (ingredients.includes(ingredient)) {
+      // if so, remove it
+      this.setState({ingredients: ingredients.filter((item) => item !== ingredient)})
+    } else {
+      // if not, add it
+      ingredients.push(ingredient)
+      this.setState({ingredients: ingredients})
+    }
+  }
+
   handleSubmit = e => {
     e.preventDefault();
     this.clearInputs();
