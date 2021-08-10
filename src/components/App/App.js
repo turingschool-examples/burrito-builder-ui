@@ -36,7 +36,7 @@ class App extends Component {
           <OrderForm handleAddOrder={this.handleAddOrder}/>
         </header>
 
-        <Orders orders={this.state.orders} handleAddDelete={this.handleDelete}/>
+        <Orders orders={this.state.orders} handleDelete={this.handleDelete}/>
       </main>
     );
   }
