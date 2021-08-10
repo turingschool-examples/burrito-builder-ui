@@ -64,5 +64,18 @@ describe('Order Form', () => {
 
     })
 
+    it.only('Should not submit an order if name is not included', () => {
+        cy
+            .get('.ingredients-buttons')
+            .find('button')
+            .first()
+            .click()
+            .get('.submit-btn')
+            .click()
+            .get('.order')
+            .should('have.length', 3)
+
+    })
+
 
 })
