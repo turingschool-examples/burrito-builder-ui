@@ -24,7 +24,7 @@ describe('Order Form', () => {
             .contains('Pat')
     })
 
-    it.only('Should be able to see ingredients on an order that has been placed', () => {
+    it('Should be able to see ingredients on an order that has been placed', () => {
         cy
             .get(':nth-child(1) > .ingredient-list > :nth-child(1)')
             .contains('beans')
@@ -33,6 +33,4 @@ describe('Order Form', () => {
             .get(':nth-child(1) > .ingredient-list > :nth-child(5)')
             .contains('jalapeno')
     })
-    
-
 })
