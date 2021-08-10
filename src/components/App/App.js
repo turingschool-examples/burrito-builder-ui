@@ -22,6 +22,10 @@ class App extends Component {
     this.setState({ orders: [...this.state.orders, newOrder]})
   }
 
+  handleAddDelete = () => {
+    console.log('DELETE')
+  }
+
   render() {
     return (
       <main className="App">
@@ -30,7 +34,7 @@ class App extends Component {
           <OrderForm handleAddOrder={this.handleAddOrder}/>
         </header>
 
-        <Orders orders={this.state.orders}/>
+        <Orders orders={this.state.orders} handleAddDelete={this.handleAddDelete}/>
       </main>
     );
   }
