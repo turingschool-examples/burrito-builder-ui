@@ -7,3 +7,13 @@ export const getOrders = () => {
         return response.json()
     })
 }
+
+export const addOrder = (data) => {
+  fetch('http://localhost:3001/api/v1/orders', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+  })
+      .then(response => console.log(response))
+      .catch(err => console.log(`Add order Error: ${err.message}`));
+}
