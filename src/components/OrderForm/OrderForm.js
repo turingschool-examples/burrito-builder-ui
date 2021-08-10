@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+
 class OrderForm extends Component {
   constructor(props) {
     super();
@@ -10,29 +11,45 @@ class OrderForm extends Component {
     };
   }
 
+  handleNameChange = e => {
+    this.setState({ name: e.target.value });
+  }
 
   handleSubmit = e => {
     e.preventDefault();
-    this.clearInputs();
+    const newBitto = {
+      name: this.state.name,
+      ingredients: this.state.ingredients
+    }
+    this.props.addOrder(newBitto)
+    console.log(newBitto)
+    this.clearInputs()
+  }
+
+
+  handleIngredientChange = e => {
+    e.preventDefault();
+    this.setState({ ingredients: [...this.state.ingredients, e.target.name] })
   }
 
   clearInputs = () => {
-    this.setState({name: '', ingredients: []});
+    this.setState({ name: '', ingredients: [] });
   }
 
   render() {
     const possibleIngredients = ['beans', 'steak', 'carnitas', 'sofritas', 'lettuce', 'queso fresco', 'pico de gallo', 'hot sauce', 'guacamole', 'jalapenos', 'cilantro', 'sour cream'];
     const ingredientButtons = possibleIngredients.map(ingredient => {
       return (
-        <button key={ingredient} name={ingredient} onClick={e => this.handleIngredientChange(e)}>
+        <button className='ingredient-button' key={ingredient} name={ingredient} onClick={event => this.handleIngredientChange(event)}>
           {ingredient}
         </button>
       )
     });
 
     return (
-      <form>
+      <form className='order-form'>
         <input
+          data-cy='order-input'
           type='text'
           placeholder='Name'
           name='name'
@@ -40,11 +57,13 @@ class OrderForm extends Component {
           onChange={e => this.handleNameChange(e)}
         />
 
-        { ingredientButtons }
+        { ingredientButtons}
 
-        <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
+        <p>Order: {this.state.ingredients.join(', ') || 'Nothing selected'}</p>
 
-        <button onClick={e => this.handleSubmit(e)}>
+        <button
+          className='submit-button'
+          onClick={e => this.handleSubmit(e)}>
           Submit Order
         </button>
       </form>
