@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { addOrder } from '../../apiCalls';
+import './OrderForm.css';
 
 class OrderForm extends Component {
   constructor(props) {
@@ -46,7 +47,7 @@ class OrderForm extends Component {
     const possibleIngredients = ['beans', 'steak', 'carnitas', 'sofritas', 'lettuce', 'queso fresco', 'pico de gallo', 'hot sauce', 'guacamole', 'jalapenos', 'cilantro', 'sour cream'];
     const ingredientButtons = possibleIngredients.map(ingredient => {
       return (
-        <button key={ingredient} name={ingredient} onClick={e => this.handleIngredientChange(e)}>
+        <button className="separate-ing-btns" key={ingredient} name={ingredient} onClick={e => this.handleIngredientChange(e)}>
           {ingredient}
         </button>
       )
