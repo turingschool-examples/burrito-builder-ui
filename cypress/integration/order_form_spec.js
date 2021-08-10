@@ -4,6 +4,5 @@ describe('Order Form', () => {
           cy.intercept('http://localhost:3001/api/v1/orders', orderData)
         })
         cy.visit('http://localhost:3001/')
-      })
-
+    })
 })
