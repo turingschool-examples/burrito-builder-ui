@@ -10,6 +10,13 @@ class OrderForm extends Component {
     };
   }
 
+  handleNameChange = (e) => {
+    this.setState({ name: e.target.value })
+  }
+
+  handleIngredientChange = (e) => {
+    this.setState({ ingredients: [...this.state.ingredients, e.target.name]})
+  }
 
   handleSubmit = e => {
     e.preventDefault();
@@ -21,9 +28,6 @@ class OrderForm extends Component {
 
   // }
 
-  handleNameChange = (e) => {
-    this.setState({ name: e.target.value })
-  }
 
   clearInputs = () => {
     this.setState({name: '', ingredients: []});
