@@ -12,13 +12,16 @@ describe('Order Form', () => {
             .contains('Burrito Builder')
     })
 
-    it.only('Should be able to visit the site and see past orders that have been placed', () => {
+    it('Should be able to visit the site and see past orders that have been placed', () => {
         cy
-            // .get('.order-container')
             .get('.order')
             .should('have.length', 3)
-
     })
-    
+
+    it('Should be able to see a name on an order that has been placed', () => {
+        cy
+            .get(':nth-child(1) > h3')
+            .contains('Pat')
+    })
 
 })
