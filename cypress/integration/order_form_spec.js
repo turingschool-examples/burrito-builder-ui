@@ -19,5 +19,11 @@ describe('Order Form', () => {
             .should('have.value', "Balthazar")
     })
 
+    it('Should be able to see ingredients buttons in the form on the main page', () => {
+        cy
+            .get('.ingredients-buttons')
+            .contains('beans')
+    })
+
 
 })
