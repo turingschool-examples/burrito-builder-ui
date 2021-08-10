@@ -24,12 +24,12 @@ class OrderForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     this.validateOrderInputs();
-    // this.clearInputs();
   }
 
   validateOrderInputs = () => {
     if (this.state.name && this.state.ingredients.length > 0) {
       addOrder({ name: this.state.name, ingredients: this.state.ingredients })
+      this.props.handleAddOrder({name: this.state.name, ingredients: this.state.ingredients})
       this.clearInputs();
     } else {
       console.log('You must fill out both fields') 
