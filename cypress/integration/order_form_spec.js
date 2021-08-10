@@ -64,7 +64,7 @@ describe('Order Form', () => {
 
     })
 
-    it.only('Should not submit an order if name is not included', () => {
+    it('Should not submit an order if name is not included', () => {
         cy
             .get('.ingredients-buttons')
             .find('button')
@@ -74,8 +74,16 @@ describe('Order Form', () => {
             .click()
             .get('.order')
             .should('have.length', 3)
-
     })
 
+    it('Should not submit an order if at least one ingredient is not added', () => {
+        cy
+            .get('input')
+            .type('Balthazar')
+            .get('.submit-btn')
+            .click()
+            .get('.order')
+            .should('have.length', 3)
+    })
 
 })
