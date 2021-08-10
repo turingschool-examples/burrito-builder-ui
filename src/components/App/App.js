@@ -18,6 +18,10 @@ class App extends Component {
       .catch(err => console.error('Error fetching:', err));
   }
 
+  handleAddOrder = (newOrder) => {
+    this.setState({ orders: [...this.state.orders, newOrder]})
+  }
+
   render() {
     return (
       <main className="App">
@@ -26,7 +30,7 @@ class App extends Component {
           <OrderForm />
         </header>
 
-        <Orders orders={this.state.orders}/>
+        <Orders orders={this.state.orders} handleAddOrder={this.state.handleAddOrder}/>
       </main>
     );
   }
