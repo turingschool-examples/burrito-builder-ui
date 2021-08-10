@@ -7,6 +7,7 @@ const Orders = ({orders}) => {
     Object.keys(orders.orders)
     orderEls = orders.orders.map(order => {
       return (
+        
         <div className="order">
           <h3>{order.name}</h3>
           <ul className="ingredient-list">
