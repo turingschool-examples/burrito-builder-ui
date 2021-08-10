@@ -49,5 +49,20 @@ describe('Order Form', () => {
             .contains('beans, sour cream')
     })
 
+    it('Should be able to submit an order and see it on the page', () => {
+        cy
+            .get('input')
+            .type('Balthazar')
+            .get('.ingredients-buttons')
+            .find('button')
+            .first()
+            .click()
+            .get('.submit-btn')
+            .click()
+            .get('.order')
+            .should('have.length', 4)
+
+    })
+
 
 })
