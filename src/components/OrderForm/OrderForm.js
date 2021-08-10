@@ -3,8 +3,8 @@ import { addOrder } from '../../apiCalls';
 
 class OrderForm extends Component {
   constructor(props) {
-    super();
-    this.props = props;
+    super(props);
+    // this.props = props;
     this.state = {
       name: '',
       ingredients: []
