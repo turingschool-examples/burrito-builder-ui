@@ -1,8 +1,14 @@
+.orders-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
 .order {
   border: 1px solid black;
   display: inline-block;
   margin: 10px;
-  background-color: #FFF;
+  background-color: #fff;
+  height: 200px;
 }
 
 .ingredient-list {
