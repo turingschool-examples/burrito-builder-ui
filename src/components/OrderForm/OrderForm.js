@@ -61,10 +61,11 @@ class OrderForm extends Component {
           value={this.state.name}
           onChange={e => this.handleNameChange(e)}
         />
+        <section className="ingredients-buttons">
+          { ingredientButtons }
+        </section>
 
-        { ingredientButtons }
-
-        <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
+        <p className="order-ingredients">Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
 
         <button onClick={e => this.handleSubmit(e)}>
           Submit Order

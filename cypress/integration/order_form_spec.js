@@ -25,5 +25,29 @@ describe('Order Form', () => {
             .contains('beans')
     })
 
+    it('Should be able to click on a button and add an ingredient the order list', () => {
+        cy
+            .get('.ingredients-buttons')
+            .find('button')
+            .first()
+            .click()
+            .get('.order-ingredients')
+            .should('have.length', 1)
+    })
+
+    it('Should be able to click on a button and add multiple ingredients the order list', () => {
+        cy
+            .get('.ingredients-buttons')
+            .find('button')
+            .first()
+            .click()
+            .get('.ingredients-buttons')
+            .find('button')
+            .last()
+            .click()
+            .get('.order-ingredients')
+            .contains('beans, sour cream')
+    })
+
 
 })
