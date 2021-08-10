@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {getOrders} from '../../apiCalls';
+import {getOrders, deleteOrder } from '../../apiCalls';
 import Orders from '../../components/Orders/Orders';
 import OrderForm from '../../components/OrderForm/OrderForm';
 
@@ -22,8 +22,10 @@ class App extends Component {
     this.setState({ orders: [...this.state.orders, newOrder]})
   }
 
-  handleAddDelete = () => {
-    console.log('DELETE')
+  handleDelete = (id) => {
+    deleteOrder(id);
+    const filteredOrders = this.state.orders.filter(order => order.id !== id)
+    this.setState({ orders: filteredOrders})
   }
 
   render() {
@@ -34,7 +36,7 @@ class App extends Component {
           <OrderForm handleAddOrder={this.handleAddOrder}/>
         </header>
 
-        <Orders orders={this.state.orders} handleAddDelete={this.handleAddDelete}/>
+        <Orders orders={this.state.orders} handleAddDelete={this.handleDelete}/>
       </main>
     );
   }
