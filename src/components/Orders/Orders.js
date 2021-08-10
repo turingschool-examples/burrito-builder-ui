@@ -4,14 +4,14 @@ import './Orders.css';
 const Orders = props => {
   const orderEls = props.orders.map(order => {
     return (
-      <div className="order">
+      <div className="order" key={order.id}>
         <h3>{order.name}</h3>
         <ul className="ingredient-list">
           {order.ingredients.map(ingredient => {
             return <li>{ingredient}</li>
           })}
         </ul>
-        <button onClick={props.handleAddDelete}>Delete</button>
+        <button onClick={() => props.handleAddDelete(order.id)}>Delete</button>
       </div>
     )
   });
