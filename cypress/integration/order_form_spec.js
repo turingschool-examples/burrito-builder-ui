@@ -25,6 +25,12 @@ describe('Order Form', () => {
             .contains('beans')
     })
 
+    it('Should start with no ingredients added to the order', () => {
+        cy
+            .get('.order-ingredients')
+            .contains('Nothing selected')
+    })
+
     it('Should be able to click on a button and add an ingredient the order list', () => {
         cy
             .get('.ingredients-buttons')
