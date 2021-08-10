@@ -15,5 +15,14 @@ export const addOrder = (data) => {
       body: JSON.stringify(data)
   })
       .then(response => console.log(response))
-      .catch(err => console.log(`Add order Error: ${err.message}`));
+      .catch(err => console.log(`Add Order Error: ${err.message}`));
+}
+
+export const deleteOrder = (id) => {
+    fetch(`http://localhost:3001/api/v1/orders${id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+    })
+        .then(response => console.log(response))
+        .catch(err => console.log(`Delete Order Error: ${err.message}`));
 }
