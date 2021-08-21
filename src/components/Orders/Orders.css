@@ -1,8 +1,17 @@
+.orders-container {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
 .order {
+  align-items: center;
+  background-color: #fff;
   border: 1px solid black;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   margin: 10px;
-  background-color: #FFF;
+  padding: 10%;
 }
 
 .ingredient-list {
