@@ -22,9 +22,11 @@ class OrderForm extends Component {
     }
     console.log(JSON.stringify(newOrder))
     const response = await fetch("http://localhost:3001/api/v1/orders", order)
-    console.log(response,'response')
-    const data = await response.json()
-    this.props.saveOrder(data)
+    if (response.ok) {
+      const data = await response.json()
+      this.props.saveOrder(data)
+    }
+    
 
   }
 
