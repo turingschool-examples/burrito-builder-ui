@@ -9,6 +9,11 @@ class OrderForm extends Component {
       ingredients: []
     };
   }
+  // TO DO -----
+
+  //  handleIngredientChange() method
+  //  handleNameChange() method
+  //  saveOrder method -> added to handleSubmit
 
 
   handleSubmit = e => {
