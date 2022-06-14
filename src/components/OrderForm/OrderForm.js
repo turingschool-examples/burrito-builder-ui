@@ -6,27 +6,38 @@ class OrderForm extends Component {
     // this.props = props;
     this.state = {
       name: '',
-      ingredients: []
+      ingredients: [],
+      
     };
   }
   // TO DO -----
-
-  //  handleIngredientChange() method
-
   //  saveOrder method -> added to handleSubmit
+  postOrder = async (newOrder) => {
+    const { id, name, ingredients } = newOrder
+    const order = {
+      method: 'POST',
+      mode: 'no-cors',
+      body: JSON.stringify(newOrder),
+      headers: {
+        'Content-Type': 'application/json' 
+      }
+    }
+    const response = await fetch('http://localhost:3001/api/v1/orders', order)
+    const data = await response.json()
 
+  }
 
   handleSubmit = e => {
     const { name, ingredients } = this.state
     e.preventDefault();
     if (name && ingredients[0]) {
-      const newOrder = {
+      var newOrder = {
         id: Date.now(),
         ...this.state
       }
-      this.props.saveOrder(newOrder)
+      this.postOrder(this.state)
     }
-    this.clearInputs();
+    this.clearInputs(newOrder);
   }
 
   clearInputs = () => {
@@ -61,7 +72,7 @@ class OrderForm extends Component {
       return (
         <p>please pick at least one ingredient</p>
       )
-    } else { 
+    } else  { 
       return (
         <p>there ya go... click submit when you're ready</p>
       ) }
