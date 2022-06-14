@@ -10,10 +10,24 @@ class OrderForm extends Component {
     };
   }
 
+  handleNameChange = (event) => {
+    this.setState({name: event.target.value})
+  }
+
+  handleIngredientChange = (event) => {
+    event.persist();
+    event.preventDefault();
+    const newIngred = event.target.value
+      this.setState({ingredients: [...this.state.ingredients, newIngred]})
+
+  }
 
   handleSubmit = e => {
-    e.preventDefault();
-    this.clearInputs();
+    if(this.state.name && this.state.ingredients.length >= 1){
+      this.props.addOrder(this.state.name, this.state.ingredients);
+      this.clearInputs();
+    }
+
   }
 
   clearInputs = () => {
@@ -24,7 +38,7 @@ class OrderForm extends Component {
     const possibleIngredients = ['beans', 'steak', 'carnitas', 'sofritas', 'lettuce', 'queso fresco', 'pico de gallo', 'hot sauce', 'guacamole', 'jalapenos', 'cilantro', 'sour cream'];
     const ingredientButtons = possibleIngredients.map(ingredient => {
       return (
-        <button key={ingredient} name={ingredient} onClick={e => this.handleIngredientChange(e)}>
+        <button key={ingredient} value={ingredient} name={ingredient} onClick={e => this.handleIngredientChange(e)}>
           {ingredient}
         </button>
       )
@@ -44,7 +58,7 @@ class OrderForm extends Component {
 
         <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
 
-        <button onClick={e => this.handleSubmit(e)}>
+        <button onClick={e => this.handleSubmit(e)} type="button">
           Submit Order
         </button>
       </form>
