@@ -13,6 +13,10 @@ class App extends Component {
     };
   }
 
+  saveOrder = (newOrder) => {
+    this.setState({ orders: [...this.state.orders, newOrder]})
+  }
+
   getOrders = async () => {
     const response = await fetch("http://localhost:3001/api/v1/orders");
     if (response.ok) {
@@ -35,7 +39,7 @@ class App extends Component {
       <main className="App">
         <header>
           <h1>Burrito Builder</h1>
-          <OrderForm />
+          <OrderForm saveOrder={this.saveOrder}/>
         </header>
 
         <Orders orders={this.state.orders} />
