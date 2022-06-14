@@ -27,12 +27,16 @@ class App extends Component {
     }
   };
 
+ 
+
   componentDidMount = () => {
     this.getOrders().catch(err => {
       console.error("Error fetching:", err);
       this.setState({ orders: [], fetchError: true})
     });
   };
+
+
 
   render() {
     return (
