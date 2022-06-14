@@ -13,17 +13,18 @@ class OrderForm extends Component {
   // TO DO -----
   //  saveOrder method -> added to handleSubmit
   postOrder = async (newOrder) => {
-    const { id, name, ingredients } = newOrder
     const order = {
       method: 'POST',
-      mode: 'no-cors',
       body: JSON.stringify(newOrder),
       headers: {
         'Content-Type': 'application/json' 
       }
     }
-    const response = await fetch('http://localhost:3001/api/v1/orders', order)
+    console.log(JSON.stringify(newOrder))
+    const response = await fetch("http://localhost:3001/api/v1/orders", order)
+    console.log(response,'response')
     const data = await response.json()
+    console.log(data, 'data')
 
   }
 
@@ -31,13 +32,14 @@ class OrderForm extends Component {
     const { name, ingredients } = this.state
     e.preventDefault();
     if (name && ingredients[0]) {
-      var newOrder = {
+      const newOrder = {
         id: Date.now(),
         ...this.state
       }
-      this.postOrder(this.state)
+      console.log(newOrder, 'state')
+      this.postOrder(newOrder)
     }
-    this.clearInputs(newOrder);
+    this.clearInputs();
   }
 
   clearInputs = () => {
