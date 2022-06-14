@@ -24,7 +24,7 @@ class OrderForm extends Component {
     const response = await fetch("http://localhost:3001/api/v1/orders", order)
     console.log(response,'response')
     const data = await response.json()
-    console.log(data, 'data')
+    this.props.saveOrder(data)
 
   }
 

@@ -1,7 +1,6 @@
-
-
+import { orders } from '../fixtures/testData.json'
 describe("Burrito builder home page"), () => {
-  
+
   beforeEach(() => {
     cy.intercept("http://localhost:3001/api/v1/orders", orders).as("testData")
     cy.visit("http://localhost:3000/")
@@ -19,5 +18,8 @@ describe("Burrito builder home page"), () => {
       body: JSON.stringify(order),
       headers: {
         "Content-Type": "application/json"
+      }})
+    })
+    }
    
    
