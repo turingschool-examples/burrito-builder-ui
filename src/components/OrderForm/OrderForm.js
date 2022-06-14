@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class OrderForm extends Component {
   constructor(props) {
-    super();
+    super(props);
     // this.props = props;
     this.state = {
       name: '',

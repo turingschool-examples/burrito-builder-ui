@@ -1,17 +1,19 @@
 import React from 'react';
 import './Orders.css';
+import Order from '../Order/Order'
 
-const Orders = props => {
-  const orderEls = props.orders.map(order => {
+const Orders = ({ orders }) => {
+
+  const orderEls = orders.map(order => {
+    // console.log(props, 'props')
+    console.log(order.id)
     return (
-      <div className="order">
-        <h3>{order.name}</h3>
-        <ul className="ingredient-list">
-          {order.ingredients.map(ingredient => {
-            return <li>{ingredient}</li>
-          })}
-        </ul>
-      </div>
+      <Order
+      id={order.id}
+      key={order.id}
+      name={order.name}
+      ingedients={order.ingedients}
+    />
     )
   });
 
