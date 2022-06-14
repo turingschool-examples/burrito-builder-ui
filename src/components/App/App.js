@@ -21,21 +21,27 @@ class App extends Component {
     })
   }
 
-  addOrder = (addOrder) => {
-    this.setState({orders:[...this.state.orders, addOrder]})
-    this.postOrder(addOrder)
+  addOrder = (name, ingredients) => {
+    const id = this.state.orders.length + 1
+    const createOrder = {
+      id: id,
+      name: name,
+      ingredients: ingredients
+    }
+    this.setState({orders:[...this.state.orders, createOrder]})
+    if(this.postOrder(createOrder)){
+      this.setState({orders:[...this.state.orders, createOrder]})
+    }
+
   }
 
-  postOrder = (name, ingredients) => {
+  postOrder = (order) => {
     fetch('http://localhost:3001/api/v1/orders', {
       method:'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body:JSON.stringify({
-        name: '',
-        ingredients:['']
-      })
+      body:JSON.stringify(order)
     })
   }
 
