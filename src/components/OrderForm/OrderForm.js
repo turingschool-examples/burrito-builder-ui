@@ -22,6 +22,7 @@ class OrderForm extends Component {
 
   submitOrder = (e) => {
     e.preventDefault()
+    this.state.name && this.state.ingredients &&
     this.props.handleOrder(this.state)
     this.clearInputs();
   }
