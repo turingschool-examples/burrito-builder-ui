@@ -1,3 +1,8 @@
+*{
+  border: 1px solid blueviolet;
+}
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",

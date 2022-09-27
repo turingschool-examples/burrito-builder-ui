@@ -1,18 +1,33 @@
 import React, { Component } from 'react';
+// import './OrderForm.css'
+
 
 class OrderForm extends Component {
   constructor(props) {
-    super();
-    this.props = props;
+    super(props);
+    // this.props = props;
     this.state = {
       name: '',
       ingredients: []
     };
   }
 
+  handleNameChange = e => {
+     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  handleIngredientChange = (e) => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: this.state.ingredients.push(e.target.name) });
+  }
 
   handleSubmit = e => {
     e.preventDefault();
+    const newOrder= {
+      key: Date.now(),
+     ...this.state
+    }
+    this.props.addOrder(newOrder)
     this.clearInputs();
   }
 
@@ -23,15 +38,16 @@ class OrderForm extends Component {
   render() {
     const possibleIngredients = ['beans', 'steak', 'carnitas', 'sofritas', 'lettuce', 'queso fresco', 'pico de gallo', 'hot sauce', 'guacamole', 'jalapenos', 'cilantro', 'sour cream'];
     const ingredientButtons = possibleIngredients.map(ingredient => {
+      console.log(ingredient)
       return (
-        <button key={ingredient} name={ingredient} onClick={e => this.handleIngredientChange(e)}>
+        <button className='ing-btn' key={ingredient} name={ingredient} onClick={e=> this.handleIngredientChange(e)}>
           {ingredient}
         </button>
       )
     });
 
     return (
-      <form>
+      <form className='order-form'>
         <input
           type='text'
           placeholder='Name'
@@ -43,8 +59,11 @@ class OrderForm extends Component {
         { ingredientButtons }
 
         <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
-
-        <button onClick={e => this.handleSubmit(e)}>
+       
+        <button className='submit-btn'
+        
+        
+        onClick={e => this.handleSubmit(e)}>
           Submit Order
         </button>
       </form>
