@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class OrderForm extends Component {
   constructor(props) {
-    super();
+    super(props);
     this.props = props;
     this.state = {
       name: '',
@@ -10,9 +10,13 @@ class OrderForm extends Component {
     };
   }
 
-
+  handleIngredientChange = (e) => {
+    e.preventDefault()
+    this.setState({ingredients: [...this.state.ingredients, e.target.value]})
+  }
   handleSubmit = e => {
-    e.preventDefault();
+    e.preventdefault()
+    this.props.handleOrder(e);
     this.clearInputs();
   }
 
@@ -24,7 +28,7 @@ class OrderForm extends Component {
     const possibleIngredients = ['beans', 'steak', 'carnitas', 'sofritas', 'lettuce', 'queso fresco', 'pico de gallo', 'hot sauce', 'guacamole', 'jalapenos', 'cilantro', 'sour cream'];
     const ingredientButtons = possibleIngredients.map(ingredient => {
       return (
-        <button key={ingredient} name={ingredient} onClick={e => this.handleIngredientChange(e)}>
+        <button key={ingredient} value={ingredient} name={ingredient} onClick={e => this.handleIngredientChange(e)}>
           {ingredient}
         </button>
       )
@@ -44,7 +48,7 @@ class OrderForm extends Component {
 
         <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
 
-        <button onClick={e => this.handleSubmit(e)}>
+        <button value={this.state} onClick={e => this.handleSubmit(e)}>
           Submit Order
         </button>
       </form>

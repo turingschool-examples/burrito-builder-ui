@@ -11,8 +11,6 @@ class App extends Component {
         orders: []
       }
   }
-
-
   componentDidMount() {
     getOrders()
       .then(data => {
@@ -21,12 +19,16 @@ class App extends Component {
       .catch(err => console.error('Error fetching:', err));
   }
 
+  handleOrder = (e) => {
+  this.state.orders.push(e.target.value)
+  }
+
   render() {
     return (
       <main className="App">
         <header>
           <h1>Burrito Builder</h1>
-          <OrderForm />
+          <OrderForm addOrder={this.handleOrder}/>
         </header>
         {this.state.orders.length > 0 ? <Orders orders={this.state.orders} /> : <p>No orders yet!</p> }
       </main>
