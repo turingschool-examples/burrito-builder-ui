@@ -15,17 +15,13 @@ class App extends Component {
   }
 
 
-
    componentDidMount = () => {
-    
     getOrders('/orders')
     .then(data=> {
       console.log(`data`, data)
       this.setState({orders: data.orders})
-    })
-    
+    })   
   }
-
 
   addOrder = (newOrder) => {
     this.setState({ orders: [...this.state.orders, newOrder]})

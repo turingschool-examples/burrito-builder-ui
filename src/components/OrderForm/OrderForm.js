@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import './OrderForm.css'
-
+// import { postOrders } from '../../apiCalls'
+// import {getOrders} from '../../apiCalls';
 
 class OrderForm extends Component {
   constructor(props) {
@@ -18,8 +19,21 @@ class OrderForm extends Component {
 
   handleIngredientChange = (e) => {
     e.preventDefault();
-    this.setState({ [e.target.name]: this.state.ingredients.push(e.target.name) });
+    console.log(`e.target.value`, e.target.value)
+    this.setState({ ingredients: [...this.state.ingredients, e.target.value] });
   }
+
+postOrder = () => {
+  console.log(`this.name`, this.state.name)
+  console.log(`this.ingredients`, this.state.ingredients)
+return  fetch(`http://localhost:3001/api/v1/orders`,{
+             method: "POST",
+             headers: {'Content-Type': 'application/json'},
+             body: JSON.stringify({name: this.state.name, ingredients: this.state.ingredients}),
+           })
+         .then((response) => response.json())
+       
+}
 
   handleSubmit = e => {
     e.preventDefault();
@@ -28,6 +42,7 @@ class OrderForm extends Component {
      ...this.state
     }
     this.props.addOrder(newOrder)
+    this.postOrder()
     this.clearInputs();
   }
 
@@ -40,7 +55,7 @@ class OrderForm extends Component {
     const ingredientButtons = possibleIngredients.map(ingredient => {
       console.log(ingredient)
       return (
-        <button className='ing-btn' key={ingredient} name={ingredient} onClick={e=> this.handleIngredientChange(e)}>
+        <button className='ing-btn'  key={ingredient+1} name={ingredient} value={ingredient} onClick={e=> this.handleIngredientChange(e)}>
           {ingredient}
         </button>
       )
