@@ -8,7 +8,10 @@ class App extends Component {
   constructor(props) {
     super(props);
       this.state = {
-        orders: []
+        orders: [],
+        newOrder: {
+          
+        }
       }
   }
   componentDidMount() {
@@ -18,17 +21,28 @@ class App extends Component {
       })
       .catch(err => console.error('Error fetching:', err));
   }
+  // handleIngredientChange = (e) =>  {
+  //   e.preventDefault()
+  //   this.setState({ newOrder: [...this.state.newOrder, e.target.value]})
+  // }
 
-  handleOrder = (e) => {
-  this.state.orders.push(e.target.value)
+  // handleNameChange = (name) => {
+  //   this.setState({ newOrder: [...this.state.newOrder.name, name]})
+  // }
+
+  handleOrder = (order) => {
+
+  this.setState({newOrder: order})
   }
+
+  
 
   render() {
     return (
       <main className="App">
         <header>
           <h1>Burrito Builder</h1>
-          <OrderForm addOrder={this.handleOrder}/>
+          <OrderForm handleOrder={this.handleOrder}/>
         </header>
         {this.state.orders.length > 0 ? <Orders orders={this.state.orders} /> : <p>No orders yet!</p> }
       </main>
