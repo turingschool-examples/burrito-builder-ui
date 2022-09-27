@@ -7,18 +7,20 @@ describe("Form", () => {
             .visit("http://localhost:3000/")
     })
 
-    it('should visit' () => {
+    it('should visit', () => {
         cy.visit("http://localhost:3000/")
     })
-    it('should be able to submit a post')
+    it('should be able to submit a post', () => {
         cy.get('input[placeholder="Name"]')
         .type('Maya')
         .get('button[name="beans"]')
         .click()
-        .get('buttons[name="queso fresco]')
+        .get('button[name="carnitas"]')
         .click()
         .get("button")
         .contains("Submit Order")
         .click()
-        .get('#3')
-})        
+        .get('div')
+        .contains('Maya')
+})
+})
