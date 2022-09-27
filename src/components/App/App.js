@@ -3,7 +3,7 @@ import './App.css';
 import {getOrders} from '../../apiCalls';
 import Orders from '../../components/Orders/Orders';
 import OrderForm from '../../components/OrderForm/OrderForm';
-
+import Ingredients from './Ingredients'
 class App extends Component {
   constructor(props) {
     super(props);
@@ -12,10 +12,11 @@ class App extends Component {
       }
   }
 
+
   componentDidMount() {
     getOrders()
       .then(data => {
-        this.setState({orders: data})
+        this.setState({orders:[...this.state.orders, data]})
       })
       .catch(err => console.error('Error fetching:', err));
   }
@@ -27,8 +28,7 @@ class App extends Component {
           <h1>Burrito Builder</h1>
           <OrderForm />
         </header>
-
-        <Orders orders={this.state.orders}/>
+        {this.state.orders.length > 0 ? <Orders orders={this.state.orders} /> : <p>No orders yet!</p> }
       </main>
     );
   }

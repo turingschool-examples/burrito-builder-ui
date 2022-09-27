@@ -1,32 +1,25 @@
-import React,  {Component} from 'react';
+import React from 'react';
 import './Orders.css';
 import Ingredients from '../App/Ingredients';
 
-class Orders extends Component {
-  constructor(props) {
-    super(props)
-      this.state = {
-        orders:[]
-      }
-  }
-
-orderEls(props) {
-  props.orders.map(order => (
-   this.setState({orders: 
-      <div className="order">
-        <h3>{order.name}</h3>
-        <Ingredients order={order} />
-      </div> 
-  })
-  ))
-}
- render() {
-  const orders = this.state.orders
+const Orders = ({orders}) => {
+const orderz = orders[0].orders
+console.log(orderz)
   return (
     <section>
-      { this.state.orders.length > 0 ? {orders}: <p>No orders yet!</p> }
+     { orders.length > 0 ? 
+        orderz.map(order => {
+          return (
+            <div className="order" key={order.id}>
+              <h3>{order.name}</h3>
+              <ul><Ingredients order={order} key={order.id}/></ul>
+            </div>
+          )}
+      )
+      : <p>No orders yet!</p> }
     </section>
   )
 }
-}
+  
+
 export default Orders;
