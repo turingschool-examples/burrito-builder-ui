@@ -17,24 +17,27 @@ class App extends Component {
   componentDidMount() {
     getOrders()
       .then(data => {
-        this.setState({orders:[...this.state.orders, data]})
+        this.setState({orders:[data]})
       })
-      .catch(err => console.error('Error fetching:', err));
+      .catch(err => console.log('Error fetching:', err));
   }
-  // handleIngredientChange = (e) =>  {
-  //   e.preventDefault()
-  //   this.setState({ newOrder: [...this.state.newOrder, e.target.value]})
-  // }
 
-  // handleNameChange = (name) => {
-  //   this.setState({ newOrder: [...this.state.newOrder.name, name]})
-  // }
 
   handleOrder = (order) => {
-  this.setState({newOrder: order})
-  postOrder(order)
+    postOrder(order)
+      .then(data => {
+        this.setState({ orders: [...this.state.orders, data]})
+      })
+      .catch(err => console.log('Error fetching:', err)); 
   }
 
+  componentDidUpdate() {
+    getOrders()
+      .then(data => {
+        this.setState({ orders: [data] })
+      })
+      .catch(err => console.log('Error fetching:', err));
+  }
   
 
   render() {

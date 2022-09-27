@@ -12,7 +12,7 @@ console.log(orderz)
           return (
             <div className="order" key={order.id}>
               <h3>{order.name}</h3>
-              <ul><Ingredients order={order} key={order.id}/></ul>
+              <ul><Ingredients order={order}/></ul>
             </div>
           )}
       )
