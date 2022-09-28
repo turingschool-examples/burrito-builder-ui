@@ -22,7 +22,7 @@ class App extends Component {
       .catch(err => console.log('Error fetching:', err));
   }
 
-
+  
   handleOrder = (order) => {
     postOrder(order)
       .then(data => {
@@ -39,7 +39,6 @@ class App extends Component {
       .catch(err => console.log('Error fetching:', err));
   }
   
-
   render() {
     return (
       <main className="App">

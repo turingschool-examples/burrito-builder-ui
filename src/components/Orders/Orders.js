@@ -4,7 +4,6 @@ import Ingredients from '../App/Ingredients';
 
 const Orders = ({orders}) => {
 const orderz = orders[0].orders
-console.log(orderz)
   return (
     <section>
      { orders.length > 0 ? 
