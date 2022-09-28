@@ -1,25 +1,24 @@
 import React from 'react';
 import './Orders.css';
+import Ingredients from '../App/Ingredients';
 
-const Orders = props => {
-  const orderEls = props.orders.map(order => {
-    return (
-      <div className="order">
-        <h3>{order.name}</h3>
-        <ul className="ingredient-list">
-          {order.ingredients.map(ingredient => {
-            return <li>{ingredient}</li>
-          })}
-        </ul>
-      </div>
-    )
-  });
-
+const Orders = ({orders}) => {
+const orderz = orders[0].orders
   return (
     <section>
-      { orderEls.length ? orderEls : <p>No orders yet!</p> }
+     { orders.length > 0 ? 
+        orderz.map(order => {
+          return (
+            <div className="order" key={order.id}>
+              <h3>{order.name}</h3>
+              <ul><Ingredients order={order}/></ul>
+            </div>
+          )}
+      )
+      : <p>No orders yet!</p> }
     </section>
   )
 }
+  
 
 export default Orders;
