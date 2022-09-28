@@ -43,6 +43,6 @@ describe("Form", () => {
         .get('li')
         .should('contain', 'guacamole')
         .get('li')
-        .should('contain, lettuce')
+        .should('contain', 'lettuce')
 })
 })
