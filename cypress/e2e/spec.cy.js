@@ -44,6 +44,23 @@ describe('Burrito builder', () => {
     cy.get('[value="sofritas"]').click()
     cy.get('[value="sour cream"]').click()
   } )
+
+  // This test wasn't explicity in the README instructions, but I'm guessing ya'll probably wanna see it.
+
+  it.only('should add a new order card when Submit Order is clicked', () => {
+    cy.intercept('http://localhost:3001/api/v1/orders', {
+      method: 'POST',
+      fixture: '../fixtures/post.json',
+    })
+    cy.get('input[name="name"]').type('Sharknado')
+    cy.get('[value="beans"]').click()
+    cy.get(':nth-child(15)').click()
+    cy.get('section > :nth-child(4)').contains('Sharknado')
+    cy.get(':nth-child(4) > .ingredient-list > li').contains('beans')
+  })
+
+
+
 })
 
 
