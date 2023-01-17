@@ -34,18 +34,21 @@ describe('Visiting the Burrito Builder page', () => {
   })
   it('When a user visits the page, they can view the Form with the proper inputs', () => {
     cy.get('form').get('input[name="name"]').type("text")
-    cy.get('form').get('button[name="beans"]')
-    cy.get('form').get('button[name="steak"]')
-    cy.get('form').get('button[name="carnitas"]')
-    cy.get('form').get('button[name="sofritas"]')
-    cy.get('form').get('button[name="lettuce"]')
-    cy.get('form').get('button[name="queso fresco"]')
-    cy.get('form').get('button[name="pico de gallo"]')
-    cy.get('form').get('button[name="hot sauce"]')
-    cy.get('form').get('button[name="guacamole"]')
-    cy.get('form').get('button[name="jalapenos"]')
-    cy.get('form').get('button[name="cilantro"]')
-    cy.get('form').get('button[name="sour cream"]')
+
+    cy.get('form').get("button").contains("beans")
+    cy.get('form').get("button").contains("steak")
+    cy.get('form').get("button").contains("carnitas")
+    cy.get('form').get("button").contains("sofritas")
+    cy.get('form').get("button").contains("lettuce")
+    cy.get('form').get("button").contains("queso fresco")
+    cy.get('form').get("button").contains("pico de gallo")
+    cy.get('form').get("button").contains("hot sauce")
+    cy.get('form').get("button").contains("guacamole")
+    cy.get('form').get("button").contains("jalapenos")
+    cy.get('form').get("button").contains("cilantro")
+    cy.get('form').get("button").contains("sour cream")
+    
+    cy.get('form').get("button").contains("Submit Order")
   })
 
   it('When a user fills out the form, the information is reflected in the input field\'s value', () => {
