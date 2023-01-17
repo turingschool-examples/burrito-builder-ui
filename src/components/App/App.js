@@ -18,6 +18,10 @@ class App extends Component {
 
   componentDidMount() {
     getOrders()
+    .then(data => {
+      const orders = data.orders
+      this.setState({ orders })
+    })
       .catch(err => console.error('Error fetching:', err));
   }
 
@@ -28,7 +32,7 @@ class App extends Component {
           <h1>Burrito Builder</h1>
           <OrderForm />
         </header>
-        <Orders orders={this.state.orders}       key={ Date.now() }/>
+        <Orders orders={this.state.orders} id={ Date.now() }/>
       </main>
     );
   }
