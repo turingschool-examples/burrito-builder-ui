@@ -14,6 +14,15 @@ class OrderForm extends Component {
     this.setState({[event.target.name]: event.target.value})
   }
 
+  handleIngredientChange = event => {
+    event.preventDefault();
+    const ingredientsCopy = this.state.ingredients.slice();
+    if(!ingredientsCopy.find(ing => ing === event.target.name)) {
+      this.setState({ingredients: [...this.state.ingredients, event.target.name]})
+    }
+    return;
+  }
+
   handleSubmit = (e) => {
     e.preventDefault();
     
@@ -58,7 +67,7 @@ class OrderForm extends Component {
         />
 
         {ingredientButtons}
-
+        
         <p>Order: {this.state.ingredients.join(', ') || 'Nothing selected'}</p>
 
         <button onClick={(e) => this.handleSubmit(e)}>Submit Order</button>
