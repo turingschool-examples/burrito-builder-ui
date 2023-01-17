@@ -58,9 +58,6 @@ describe('Burrito builder', () => {
     cy.get('section > :nth-child(4)').contains('Sharknado')
     cy.get(':nth-child(4) > .ingredient-list > li').contains('beans')
   })
-
-
-
 })
 
 
