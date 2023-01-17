@@ -5,32 +5,50 @@ class OrderForm extends Component {
     super();
     this.props = props;
     this.state = {
-      name: '',
-      ingredients: [],
+      name: "",
+      ingredients: []
     };
   }
 
-  handleNameChange = event => {
-    this.setState({[event.target.name]: event.target.value})
-  }
+  handleNameChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
 
-  handleIngredientChange = event => {
+  handleIngredientChange = (event) => {
     event.preventDefault();
     const ingredientsCopy = this.state.ingredients.slice();
-    if(!ingredientsCopy.find(ing => ing === event.target.name)) {
-      this.setState({ingredients: [...this.state.ingredients, event.target.name]})
+    if (!ingredientsCopy.find((ing) => ing === event.target.name)) {
+      this.setState({ ingredients: [...this.state.ingredients, event.target.name] });
     }
     return;
+  };
+
+  validateForm = () => {
+    const name = this.state.name;
+    const ingredients = this.state.ingredients
+    if (name.length === 0 || ingredients.length === 0) {
+      return false;
+    } else if (name.length >= 1 && ingredients.length >= 1) {
+      return true;
+    }
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const validated = this.validateForm();
     
+    if (validated) {
+      const newOrder = {
+        name: this.state.name,
+        ingredients: this.state.ingredients
+      }
+      
+    } 
     this.clearInputs();
   };
 
   clearInputs = () => {
-    this.setState({ name: '', ingredients: [] });
+    this.setState({ name: '', ingredients: []});
   };
 
   render() {
@@ -59,15 +77,15 @@ class OrderForm extends Component {
     return (
       <form>
         <input
-          type="text"
-          placeholder="Name"
           name="name"
-          value={this.state.name}
           onChange={(e) => this.handleNameChange(e)}
+          placeholder="Name"
+          type="text"
+          value={this.state.name}
         />
 
         {ingredientButtons}
-        
+
         <p>Order: {this.state.ingredients.join(', ') || 'Nothing selected'}</p>
 
         <button onClick={(e) => this.handleSubmit(e)}>Submit Order</button>
