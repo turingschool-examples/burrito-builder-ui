@@ -9,22 +9,22 @@ class App extends Component {
     super();
     this.state = {
       orders: [{
-        name: 'Justen',
+        name: '',
         ingredients: 
-        ['beans', 'steak', 'carnitas', 'sofritas', 'lettuce', 'queso fresco', 'pico de gallo', 'hot sauce', 'guacamole', 'jalapenos', 'cilantro', 'sour cream'],
+        [],
       }]
     }
   }
 
   addOrder = newOrder => {
     console.log("New order", newOrder)
-    
+
     postOrder(newOrder)
       .then(data => {
         console.log('Data from post: ', data)
         this.setState({ orders: [...this.state.orders, data]})
       })
-// Fix this //
+console.log(this.state.orders)
   }
 
   componentDidMount() {
