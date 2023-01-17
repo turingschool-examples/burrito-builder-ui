@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { submitNewOrder } from '../../apiCalls';
 
 class OrderForm extends Component {
   constructor(props) {
@@ -43,7 +42,7 @@ class OrderForm extends Component {
         name: this.state.name,
         ingredients: this.state.ingredients
       }
-
+      this.props.addNewOrder(newOrder);
     } 
     this.clearInputs();
   };

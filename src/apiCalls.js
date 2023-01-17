@@ -1,6 +1,5 @@
 export const getOrders = () => {
-  return fetch('http://localhost:3001/api/v1/orders')
-  .then((response) => {
+  return fetch('http://localhost:3001/api/v1/orders').then((response) => {
     if (!response.ok) {
       throw new Error('Unable to retrieve burritos');
     }
@@ -11,19 +10,18 @@ export const getOrders = () => {
 export const submitNewOrder = (newOrder) => {
   const url = 'http://localhost:3001/api/v1/orders';
   const options = {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify(newOrder),
     headers: {
-      "Content-Type": "application/json"
-    }
-  }
+      'Content-Type': 'application/json',
+    },
+  };
 
-  return fetch(url, options)
-  .then(response => {
-    if(!response.ok) {
-      throw new Error(`Unable to add new order. Error: ${response.statusText}`)
+  return fetch(url, options).then((response) => {
+    if (!response.ok) {
+      throw new Error(`Unable to add new order. Error: ${response.statusText}`);
+    } else if (response.status === 201) {
+      return response.json();
     }
-
-    return response.json();
-  })
-}
+  });
+};
