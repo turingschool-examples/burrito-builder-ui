@@ -1,0 +1,19 @@
+{
+  "orders": [
+    {
+      "id": 1,
+      "name": "Valentino",
+      "ingredients": ["beans", "lettuce", "carnitas", "queso fresco", "jalapeno"]
+    },
+    {
+      "id": 2,
+      "name": "Bambounou",
+      "ingredients": ["steak", "pico de gallo", "lettuce", "carnitas", "queso fresco", "jalapeno"]
+    },
+    {
+      "id": 3,
+      "name": "Sasha",
+      "ingredients": ["sofritas", "beans", "sour cream", "carnitas", "queso fresco"]
+    }
+  ]
+}
