@@ -39,7 +39,6 @@ describe('Burrito builder', () => {
   // When a user fills out the form, the information is reflected in the input field's value
 
   it('should show the user input when data is added to the form', () => {
-    // add .should('have.value', 'me') or contains('me')
     cy.get('input[name="name"]').type('Me').should('have.value', 'Me')
     cy.get('[value="beans"]').click()
     cy.get('.order-summary').contains('Order: beans')
@@ -47,9 +46,6 @@ describe('Burrito builder', () => {
     cy.get('.order-summary').contains('Order: beans, steak')
     cy.get('[value="carnitas"]').click()
     cy.get('.order-summary').contains('Order: beans, steak, carnitas')
-    // cy.get('[value="sofritas"]').click().should('have.value', 'sofritas')
-    // cy.get('[value="sour cream"]').click().should('have.value', 'sour cream')
-    // verify that beans is displayed on the ingredietns page on the dom after buttons are clicked
   } )
 
   // This test wasn't explicity in the README instructions, but I'm guessing ya'll probably wanna see it.
