@@ -39,10 +39,12 @@ describe('Burrito builder', () => {
   // When a user fills out the form, the information is reflected in the input field's value
 
   it('should show the user input when data is added to the form', () => {
+    // add .should('have.value', 'me') or contains('me')
     cy.get('input[name="name"]').type('Me')
     cy.get('[value="beans"]').click()
     cy.get('[value="sofritas"]').click()
     cy.get('[value="sour cream"]').click()
+    // verify that beans is displayed on the ingredietns page on the dom after buttons are clicked
   } )
 
   // This test wasn't explicity in the README instructions, but I'm guessing ya'll probably wanna see it.

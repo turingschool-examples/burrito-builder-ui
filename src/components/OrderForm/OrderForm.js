@@ -25,6 +25,7 @@ class OrderForm extends Component {
       name: this.state.name,
       ingredients: this.state.ingredients
     }
+    // I think I just need to add .length to my ingredients.
     if(this.state.name && this.state.ingredients) {
       this.props.addOrder(newOrder)
       this.clearInputs();}
