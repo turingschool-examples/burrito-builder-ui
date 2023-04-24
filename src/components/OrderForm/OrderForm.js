@@ -10,7 +10,6 @@ const OrderForm = () => {
   }
 
   const clearInputs = () => {
-    // this.setState({name: '', ingredients: []});
     setName('');
     setIngredients([]);
   }
@@ -30,13 +29,13 @@ const OrderForm = () => {
         type='text'
         placeholder='Name'
         name='name'
-        value={this.state.name}
-        onChange={e => this.handleNameChange(e)}
+        value={name}
+        onChange={e => setName(e.target.value)}
       />
 
       { ingredientButtons }
 
-      <p>Order: { this.state.ingredients.join(', ') || 'Nothing selected' }</p>
+      <p>Order: { ingredients.join(', ') || 'Nothing selected' }</p>
 
       <button onClick={e => this.handleSubmit(e)}>
         Submit Order
