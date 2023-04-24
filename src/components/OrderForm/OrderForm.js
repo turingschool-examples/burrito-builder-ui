@@ -13,15 +13,11 @@ class OrderForm extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let orderObj = {name: this.state.name, ingredients: this.state.ingredients}
-    console.log('obj', orderObj)
     this.props.addOrder(orderObj)
     this.clearInputs();
   }
 
   handleNameChange = e => {
-    console.log('event:', e)
-    console.log('value:', e.target.value)
-    console.log('name:', e.target.name)
     this.setState({[e.target.name] : e.target.value})
   }
 
