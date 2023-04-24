@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { postOrder } from '../../apiCalls';
 
-const OrderForm = () => {
+const OrderForm = ({ addOrder }) => {
   const [name, setName] = useState('');
   const [ingredients, setIngredients] = useState([]);
 
@@ -14,9 +13,7 @@ const OrderForm = () => {
     e.preventDefault();
     if (name && ingredients.length) {
       const newOrder = { name: name, ingredients: ingredients }
-      postOrder(newOrder)
-        .then(data => console.log(data))
-        .catch(err => console.error('Error fetching:', err));
+      addOrder(newOrder)
     }
     clearInputs();
   }
