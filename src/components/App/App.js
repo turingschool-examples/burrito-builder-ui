@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import {getOrders} from '../../apiCalls';
+import {getOrders, giveOrder} from '../../apiCalls';
 import Orders from '../../components/Orders/Orders';
 import OrderForm from '../../components/OrderForm/OrderForm';
 
@@ -26,8 +26,11 @@ class App extends Component {
   }
 
   addOrder = (orderObject) => {
-    this.setState({orders: [...this.state.orders, orderObject]})
+    giveOrder(orderObject)
+      .then(order=> this.setState({orders: [...this.state.orders, order]}))
+      .catch(err=> console.error('Error Posting:', err))
   }
+
   render() {
     return (
       <main className="App">
