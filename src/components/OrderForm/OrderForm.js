@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { postOrder } from '../../apiCalls';
 
 const OrderForm = () => {
   const [name, setName] = useState('');
@@ -11,6 +12,12 @@ const OrderForm = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    if (name && ingredients.length) {
+      const newOrder = { name: name, ingredients: ingredients }
+      postOrder(newOrder)
+        .then(data => console.log(data))
+        .catch(err => console.error('Error fetching:', err));
+    }
     clearInputs();
   }
 
@@ -42,7 +49,7 @@ const OrderForm = () => {
 
       <p>Order: { ingredients.join(', ') || 'Nothing selected' }</p>
 
-      <button onClick={e => this.handleSubmit(e)}>
+      <button onClick={e => handleSubmit(e)}>
         Submit Order
       </button>
     </form>
