@@ -2,9 +2,9 @@
 
 describe('empty spec', () => {
   beforeEach('intercept and stub orders then visit page', () => {
-    cy.interceptBeforeOrders();
+    cy.interceptGetOrders();
     cy.visit('http://localhost:3000');
-    cy.wait('@before_orders');
+    cy.wait('@getInitialOrders');
   })
 
   it('should be at the root path', () => {
