@@ -56,21 +56,19 @@ describe('empty spec', () => {
   it('should have some orders', () => {
     cy.get('section').children().first()
       .contains('h3', 'Pat')
-      .get('section').children().first()
-      .get('.ingredient-list').contains('beans')
-      .get('.ingredient-list').contains('lettuce')
-      .get('.ingredient-list').contains('carnitas')
-      .get('.ingredient-list').contains('queso fresco')
-      .get('.ingredient-list').contains('jalapeno')
-
-    cy.get('section').children().last()
+      .get('.order').first().find('.ingredient-list').contains('beans')
+      .get('.order').first().find('.ingredient-list').contains('lettuce')
+      .get('.order').first().find('.ingredient-list').contains('carnitas')
+      .get('.order').first().find('.ingredient-list').contains('queso fresco')
+      .get('.order').first().find('.ingredient-list').contains('jalapeno');
+      
+      cy.get('section').children().last()
       .contains('h3', 'Sam')
-      .get('section').children().first()
-      .get('.ingredient-list').contains('steak')
-      .get('.ingredient-list').contains('pico de gallo')
-      .get('.ingredient-list').contains('lettuce')
-      .get('.ingredient-list').contains('carnitas')
-      .get('.ingredient-list').contains('queso fresco')
-      .get('.ingredient-list').contains('jalapeno')
+      .get('.order').last().find('.ingredient-list').contains('steak')
+      .get('.order').last().find('.ingredient-list').contains('pico de gallo')
+      .get('.order').last().find('.ingredient-list').contains('lettuce')
+      .get('.order').last().find('.ingredient-list').contains('carnitas')
+      .get('.order').last().find('.ingredient-list').contains('queso fresco')
+      .get('.order').last().find('.ingredient-list').contains('jalapeno');
+    });
   });
-});
