@@ -1,4 +1,5 @@
-// Visit home page
+// Test when user visits home page to make sure all elements properly render
+
 describe('empty spec', () => {
   beforeEach('intercept and stub orders then visit page', () => {
     cy.interceptBeforeOrders();
