@@ -1,4 +1,4 @@
-// Test when user visits home page to make sure all elements properly render
+// Test when user visits home page to make sure all elements properly render and all orders from the database are fetched.
 
 describe('empty spec', () => {
   beforeEach('intercept and stub orders then visit page', () => {

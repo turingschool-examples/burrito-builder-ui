@@ -1,3 +1,5 @@
+// Testing user flow for when they try to submit an order without having entered their name or selecting at least one ingredient. A message should pop up letting them know they should have both.
+
 describe('Sad Path: User Tries to Submit Order without All Requirements', () => {
   beforeEach('intercept and stub orders then visit page', () => {
     cy.interceptGetOrders();
