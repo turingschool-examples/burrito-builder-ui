@@ -1,7 +1,9 @@
 // Visit home page
 describe('empty spec', () => {
   beforeEach('intercept and stub orders then visit page', () => {
-    cy.visitPage();
+    cy.interceptBeforeOrders();
+    cy.visit('http://localhost:3000');
+    cy.wait('@before_orders');
   })
 
   it('should be at the root path', () => {
@@ -28,8 +30,18 @@ describe('empty spec', () => {
       .should('have.length', 13);
 
     cy.get('form')
-      .find('button').first()
-      .contains('beans');
+      .find('button').eq(0).contains('beans')
+      .get('button').eq(1).contains('steak')
+      .get('button').eq(2).contains('carnitas')
+      .get('button').eq(3).contains('sofritas')
+      .get('button').eq(4).contains('lettuce')
+      .get('button').eq(5).contains('queso fresco')
+      .get('button').eq(6).contains('pico de gallo')
+      .get('button').eq(7).contains('hot sauce')
+      .get('button').eq(8).contains('guacamole')
+      .get('button').eq(9).contains('jalapenos')
+      .get('button').eq(10).contains('cilantro')
+      .get('button').eq(11).contains('sour cream')
    
     cy.get('form')
       .contains('p', 'Order: Nothing selected');
