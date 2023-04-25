@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 const OrderForm = ({ addOrder }) => {
   const [name, setName] = useState('');
   const [ingredients, setIngredients] = useState([]);
+  const [incompleteForm, setIncompleteForm] = useState(false);
 
   const handleIngredientChange = e => {
     e.preventDefault();
@@ -12,8 +13,11 @@ const OrderForm = ({ addOrder }) => {
   const handleSubmit = e => {
     e.preventDefault();
     if (name && ingredients.length) {
+      setIncompleteForm(false);
       const newOrder = { name: name, ingredients: ingredients }
-      addOrder(newOrder)
+      addOrder(newOrder);
+    } else {
+      setIncompleteForm(true);
     }
     clearInputs();
   }
@@ -43,7 +47,7 @@ const OrderForm = ({ addOrder }) => {
       />
 
       { ingredientButtons }
-
+      {incompleteForm && <p>Please enter a name and select at least one ingredient.</p>}
       <p>Order: { ingredients.join(', ') || 'Nothing selected' }</p>
 
       <button onClick={e => handleSubmit(e)}>

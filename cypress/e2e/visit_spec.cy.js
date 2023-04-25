@@ -1,7 +1,10 @@
-// Visit home page
+// Test when user visits home page to make sure all elements properly render and all orders from the database are fetched.
+
 describe('empty spec', () => {
   beforeEach('intercept and stub orders then visit page', () => {
-    cy.visitPage();
+    cy.interceptGetOrders();
+    cy.visit('http://localhost:3000');
+    cy.wait('@getInitialOrders');
   })
 
   it('should be at the root path', () => {
@@ -28,8 +31,19 @@ describe('empty spec', () => {
       .should('have.length', 13);
 
     cy.get('form')
-      .find('button').first()
-      .contains('beans');
+      .find('button').eq(0).contains('beans')
+      .get('button').eq(1).contains('steak')
+      .get('button').eq(2).contains('carnitas')
+      .get('button').eq(3).contains('sofritas')
+      .get('button').eq(4).contains('lettuce')
+      .get('button').eq(5).contains('queso fresco')
+      .get('button').eq(6).contains('pico de gallo')
+      .get('button').eq(7).contains('hot sauce')
+      .get('button').eq(8).contains('guacamole')
+      .get('button').eq(9).contains('jalapenos')
+      .get('button').eq(10).contains('cilantro')
+      .get('button').eq(11).contains('sour cream')
+      .get('button').eq(12).should('have.text', 'Submit Order');
    
     cy.get('form')
       .contains('p', 'Order: Nothing selected');
@@ -40,23 +54,24 @@ describe('empty spec', () => {
   });
 
   it('should have some orders', () => {
+    cy.get('section')
+      .find('.order').should('have.length', 2);
+
     cy.get('section').children().first()
       .contains('h3', 'Pat')
-      .get('section').children().first()
-      .get('.ingredient-list').contains('beans')
-      .get('.ingredient-list').contains('lettuce')
-      .get('.ingredient-list').contains('carnitas')
-      .get('.ingredient-list').contains('queso fresco')
-      .get('.ingredient-list').contains('jalapeno')
-
-    cy.get('section').children().last()
+      .get('.order').first().find('.ingredient-list').contains('beans')
+      .get('.order').first().find('.ingredient-list').contains('lettuce')
+      .get('.order').first().find('.ingredient-list').contains('carnitas')
+      .get('.order').first().find('.ingredient-list').contains('queso fresco')
+      .get('.order').first().find('.ingredient-list').contains('jalapeno');
+      
+      cy.get('section').children().last()
       .contains('h3', 'Sam')
-      .get('section').children().first()
-      .get('.ingredient-list').contains('steak')
-      .get('.ingredient-list').contains('pico de gallo')
-      .get('.ingredient-list').contains('lettuce')
-      .get('.ingredient-list').contains('carnitas')
-      .get('.ingredient-list').contains('queso fresco')
-      .get('.ingredient-list').contains('jalapeno')
+      .get('.order').last().find('.ingredient-list').contains('steak')
+      .get('.order').last().find('.ingredient-list').contains('pico de gallo')
+      .get('.order').last().find('.ingredient-list').contains('lettuce')
+      .get('.order').last().find('.ingredient-list').contains('carnitas')
+      .get('.order').last().find('.ingredient-list').contains('queso fresco')
+      .get('.order').last().find('.ingredient-list').contains('jalapeno');
+    });
   });
-});
