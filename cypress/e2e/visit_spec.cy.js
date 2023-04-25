@@ -42,6 +42,7 @@ describe('empty spec', () => {
       .get('button').eq(9).contains('jalapenos')
       .get('button').eq(10).contains('cilantro')
       .get('button').eq(11).contains('sour cream')
+      .get('button').eq(12).should('have.text', 'Submit Order');
    
     cy.get('form')
       .contains('p', 'Order: Nothing selected');
