@@ -54,6 +54,9 @@ describe('empty spec', () => {
   });
 
   it('should have some orders', () => {
+    cy.get('section')
+      .find('.order').should('have.length', 2);
+
     cy.get('section').children().first()
       .contains('h3', 'Pat')
       .get('.order').first().find('.ingredient-list').contains('beans')

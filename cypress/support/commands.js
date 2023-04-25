@@ -1,5 +1,5 @@
 Cypress.Commands.add('interceptGetOrders', () => {
-  cy.intercept('http://localhost:3001/api/v1/orders', {
+  cy.intercept('GET', 'http://localhost:3001/api/v1/orders', {
     statusCode: 200,
     fixture: 'mock_orders',
   })
@@ -7,7 +7,7 @@ Cypress.Commands.add('interceptGetOrders', () => {
  });
 
  Cypress.Commands.add('interceptGetNewOrders', () => {
-  cy.intercept('http://localhost:3001/api/v1/orders', {
+  cy.intercept('GET', 'http://localhost:3001/api/v1/orders', {
     statusCode: 200,
     fixture: 'after_post_orders',
   })
