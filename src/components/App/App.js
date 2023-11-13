@@ -11,7 +11,6 @@ function App() {
   useEffect(() => {
     getOrders() 
     .then(data => {
-      // console.log("orders in useEffect", orders.orders)
       setOrders(data.orders)
     })
     .catch((err) => console.error("Error fetching:", err));
