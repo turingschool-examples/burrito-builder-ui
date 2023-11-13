@@ -21,7 +21,6 @@ const postOrder = (newOrder) => {
     if (!response.ok) {
       throw new Error(`${response.status} ${response.statusText}`);
     }
-    console.log(response);
     return response.json();
   })
 }
