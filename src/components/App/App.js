@@ -7,10 +7,17 @@ import OrderForm from "../../components/OrderForm/OrderForm";
 function App() {
 
 const [orders, setOrders] = useState([]) //orders is an array
+const [error, setError] = useState("") //error will be a string
 
   useEffect(() => {
-    getOrders().catch((err) => console.error("Error fetching:", err));
-  });
+    getOrders()
+    .then((data) => {
+      console.log("GET data", data)
+      setOrders(data.orders) //data is an object, need to do data.orders to get the orders array.
+      console.log("data.orders:=====", data.orders);
+    })
+    .catch((error) => console.error("Error fetching", error));
+  }, []);
 
   return (
     <main className="App">
@@ -25,3 +32,4 @@ const [orders, setOrders] = useState([]) //orders is an array
 }
 
 export default App;
+
