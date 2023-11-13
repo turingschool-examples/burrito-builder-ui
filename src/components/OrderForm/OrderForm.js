@@ -33,8 +33,11 @@ function OrderForm(props) {
       <button 
         key={ingredient}
         name={ingredient}
-        onClick={(event) => setIngredients([...ingredients, event.target.name])}
+        onClick={(event) => {
+          event.preventDefault();
+          setIngredients([...ingredients, event.target.name])}
         //not .value, this is a button
+        }
       >
         {ingredient}
       </button>
