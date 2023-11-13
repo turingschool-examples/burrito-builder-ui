@@ -1,13 +1,23 @@
 import { useState } from "react";
 
-function OrderForm(props) {
-
-  console.log("props", props)
+function OrderForm({addNewOrder}) {
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState([]);
 
   function handleSubmit(e) {
     e.preventDefault();
+
+    // validate form...
+
+    const newOrder = {
+      name,
+      ingredients
+    }
+    
+    addNewOrder(newOrder)
+    // invoke addNewOrder passing in newOrder obj
+ 
+
     clearInputs();
   }
 
@@ -31,14 +41,6 @@ function OrderForm(props) {
     "sour cream",
   ];
 
-
-  // when i click on lettuce button, i want the value of that button (a string of lettuce) to be added to the state array (ingredients). 
-
-  // code: grab ahold of the button with event.target
-  // add event.target to ingredients array with spread operator
-
-  // do i need event.preventDefault()?
-  
   const ingredientButtons = possibleIngredients.map((ingredient) => {
     return (
       <button
@@ -75,6 +77,13 @@ function OrderForm(props) {
 }
 
 export default OrderForm;
+
+
+  // when i click on lettuce button, i want the value of that button (a string of lettuce) to be added to the state array (ingredients). 
+
+  // code: setIngredients([...ingredients, e.target.name])
+
+  // do i need event.preventDefault()?
 
 // ingredients.join(",") takes the ingredients array stored in state? and separates each 
 // ingredient at the comma and returns a string.
