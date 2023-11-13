@@ -18,8 +18,7 @@ function App() {
   useEffect(() => {
     getOrders()
       .then((data) => {
-        setOrders(data.orders); 
-       
+        setOrders(data.orders);    
       })
       .catch((error) => console.log(error.message));
   }, []);
@@ -30,7 +29,6 @@ function App() {
         <h1>Burrito Builder</h1>
         <OrderForm addOrder={addOrder} />
       </header>
-
       <Orders orders={orders} />
     </main>
   );
