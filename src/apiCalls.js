@@ -1,4 +1,5 @@
 export const getOrders = () => {
+  console.log("get happened");
   return fetch("http://localhost:3001/api/v1/orders").then((response) =>
     response.json()
   );

@@ -19,7 +19,7 @@ function App() {
         console.error("Error fetching:", err);
         setLoading(false);
       });
-  }, [ingredients]);
+  }, []);
 
   return (
     <main className="App">
