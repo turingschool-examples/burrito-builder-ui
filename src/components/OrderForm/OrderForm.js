@@ -20,7 +20,6 @@ function OrderForm( {addOrder} ) {
     }
     addOrder(newOrder);
     clearInputs();
-    setErrorMessage("");
   }
 
   function clearInputs() {
@@ -52,7 +51,6 @@ function OrderForm( {addOrder} ) {
             event.preventDefault();
             setIngredients([...ingredients, event.target.name]);
           }
-          //not .value, this is a button
         }
       >
         {ingredient}
@@ -67,8 +65,7 @@ function OrderForm( {addOrder} ) {
         placeholder='Name'
         name='name'
         value={name}
-        onChange={(event) => setName(event.target.value)}
-        //changed setter function setName, earlier it was setIngredients but this input is for name, not ingredients. 
+        onChange={event => setName(event.target.value)}
       />
 
       {ingredientButtons}

@@ -5,22 +5,21 @@ import Orders from "../../components/Orders/Orders";
 import OrderForm from "../../components/OrderForm/OrderForm";
 
 function App() {
-  const [orders, setOrders] = useState([]); //orders is an array
-  const [error, setError] = useState(""); //error will be a string
+  const [orders, setOrders] = useState([]);
+  const [error, setError] = useState(""); 
 
   const addOrder = (newOrder) => {
-    console.log("newOrder:=====", newOrder);
+
     postOrder(newOrder)
-      .then((data) => setOrders([...orders, data]))
+      .then((data) => setOrders([...orders, newOrder]))
       .catch((error) => setError(error.message));
   };
 
   useEffect(() => {
     getOrders()
       .then((data) => {
-        console.log("GET data", data);
-        setOrders(data.orders); //data is an object, need to do data.orders to get the orders array.
-        console.log("data.orders:=====", data.orders);
+        setOrders(data.orders); 
+       
       })
       .catch((error) => console.log(error.message));
   }, []);
