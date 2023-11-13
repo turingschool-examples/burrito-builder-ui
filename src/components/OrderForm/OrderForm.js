@@ -3,9 +3,14 @@ import { useState } from "react";
 function OrderForm(props) {
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState([]);
+const [errorMessage, setErrorMessage] = useState("");
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (!name.length || ingredients.length) {
+      setErrorMessage("Form is incomplete. All fields need to be filled in or selected before submission.");
+      return
+    }
     clearInputs();
   }
 
@@ -58,7 +63,8 @@ function OrderForm(props) {
 
       <p>Order: {ingredients.join(", ") || "Nothing selected"}</p>
 
-      <button onClick={(e) => handleSubmit(e)}>Submit Order</button>
+      <button onClick={(event) => handleSubmit(event)}>Submit Order</button>
+      {errorMessage && <div className='error-message'>{errorMessage}</div>}
     </form>
   );
 }
