@@ -1,18 +1,31 @@
 import { useState } from "react";
 
-function OrderForm(props) {
+function OrderForm( {addOrder} ) {
   const [name, setName] = useState("");
   const [ingredients, setIngredients] = useState([]);
+  const [errorMessage, setErrorMessage] = useState("");
 
-  function handleSubmit(e) {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    if (!name.length || !ingredients.length) {
+      setErrorMessage(
+        "Form is incomplete. All fields need to be filled in or selected before submission."
+      );
+      return;
+    }
+    const newOrder = {
+      id: Date.now(),
+      name,
+      ingredients
+    }
+    addOrder(newOrder);
     clearInputs();
   }
 
   function clearInputs() {
     setName("");
     setIngredients([]);
-  };
+  }
 
   const possibleIngredients = [
     "beans",
@@ -30,10 +43,15 @@ function OrderForm(props) {
   ];
   const ingredientButtons = possibleIngredients.map((ingredient) => {
     return (
-      <button
+      <button 
         key={ingredient}
         name={ingredient}
-        // onClick={(e) => }
+        onClick={
+          (event) => {
+            event.preventDefault();
+            setIngredients([...ingredients, event.target.name]);
+          }
+        }
       >
         {ingredient}
       </button>
@@ -41,20 +59,21 @@ function OrderForm(props) {
   });
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <input
-        type="text"
-        placeholder="Name"
-        name="name"
+        type='text'
+        placeholder='Name'
+        name='name'
         value={name}
-        // onChange={(e) => }
+        onChange={event => setName(event.target.value)}
       />
 
       {ingredientButtons}
 
-      <p>Order: {ingredients.join(", ") || "Nothing selected"}</p>
+      <p>Order: {ingredients.join(" ") || "Nothing selected"}</p>
 
-      <button onClick={(e) => handleSubmit(e)}>Submit Order</button>
+      <button type='submit'>Submit Order</button>
+      {errorMessage && <div className='error-message'>{errorMessage}</div>}
     </form>
   );
 }
