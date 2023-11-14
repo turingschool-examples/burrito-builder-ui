@@ -20,6 +20,25 @@ describe("Burrito Builder homepage userflow", () => {
         .get("form")
         .get("input")
         .should("have.attr", "placeholder", "Name")
+        .get('[type="submit"]')
+        .contains("Submit Order")
+        .click()
+        .get(".error-message")
+        .contains(
+          "Form is incomplete. All fields need to be filled in or selected before submission."
+        )
+        .get("input")
+        .should("have.attr", "placeholder", "Name")
+        .get('[name="beans"]')
+        .contains("beans")
+        .get('[type="submit"]')
+        .contains("Submit Order")
+        .click()
+        .get(".error-message")
+        .contains(
+          "Form is incomplete. All fields need to be filled in or selected before submission."
+        )
+        .get("input")
         .type("Nicole")
         .should("have.value", "Nicole")
         .get("header")
